@@ -3,204 +3,16 @@
 <head>
   <meta charset="UTF-8">
   <title>D'cell Eletrônicos Loja</title>
-  <style>
-    body { background: #16191e; color: #ecf0f1; font-family: Arial,sans-serif; margin:0; padding:0; transition: background .35s, color .25s;}
-    body.claro{background: #f8f9fa; color: #222;}
-    header{display:flex;flex-direction:column;align-items:center;padding-top:1em;gap:0.8em;}
-    .logo-mascote{height:70px;}
-    .logo-dcell{font-size:2em;font-family:'Arial Black',Impact,sans-serif;color:#ff8c00;text-shadow:0 0 10px #ff8c00,0 0 10px #fff;margin-right:8px;font-weight:bold;}
-    .logo-eletronicos{font-size:1.12em;font-family:'Arial Black',Impact,sans-serif;color:#fff;text-shadow:0 0 8px #fff,0 0 6px #222;}
-    body.claro .logo-eletronicos{color:#444;text-shadow:0 0 2px #fff,0 0 0px #bbb;}
-    .switch-btn{width:52px;height:28px;background:#23242b;border:none;border-radius:16px;display:flex;align-items:center;cursor:pointer;position:relative;transition:background .25s;outline:none;box-shadow:0 2px 8px #0002;margin-top:4px;}
-    body.claro .switch-btn{background:#e2e2e6;}
-    .switch-slider{width:24px;height:24px;border-radius:50%;background:#fff;position:absolute;left:3px;top:2px;transition:left 0.28s,background .25s;display:flex;align-items:center;justify-content:center;z-index:2;box-shadow:0 2px 6px #0002;}
-    body.claro .switch-slider{left:25px;background:#16191e;}
-    .switch-icone{width:18px;height:18px;pointer-events:none;display:block;z-index:3;position:relative;}
-    .switch-icone.sun{opacity:0;transition:opacity 0.21s;}
-    .switch-icone.moon{opacity:1;transition:opacity 0.22s;}
-    body.claro .switch-icone.sun{opacity:1;}
-    body.claro .switch-icone.moon{opacity:0;}
-    .carrinho-icone{position:fixed;top:22px;right:32px;cursor:pointer;font-size:1.67em;background:#23242b;color:#39ff14;border-radius:30px;padding:0.22em 0.7em;z-index:10;border:2px solid #39ff14;display:flex;align-items:center;}
-    .carrinho-icone strong{margin-left:0.35em;font-size:1em;color:#fff;}
-    .sacola{position:fixed;right:22px;top:75px;width:340px;background:#23242b;border:2px solid #39ff14;border-radius:9px;box-shadow:0 2px 18px #0004;padding:1.3em 1.2em 1em 1.2em;color:#ecf0f1;display:none;z-index:100;}
-    .sacola h3{color:#39ff14;font-size:1.13em;margin:0 0 1em 0;}
-    .sacola-lista{min-height:32px;}
-    .sacola-total{color:#ff8c00;font-weight:bold;padding:0.5em 0.2em 0.4em 0;text-align:right;font-size:1.1em;}
-    .remover-btn{background:#ff8c00;color:#fff;border:none;border-radius:4px;padding:0.13em 0.73em;margin-left:8px;cursor:pointer;font-size:.98em;font-weight:bold;vertical-align:middle;}
-    .comprar-btn{width:100%;background:#39ff14;color:#23242b;border:none;border-radius:8px;padding:0.63em 0;font-size:1.07em;font-weight:bold;margin-top:0.7em;cursor:pointer;transition:background .2s;}
-    .comprar-btn:hover{background:#19a86e;}
-    .sacola-confirmado{padding:0.8em;border-radius:8px;background:#222b;color:#39ff14;margin-top:10px;font-weight:bold;text-align:center;}
-    .form-usuario{margin-top:0.7em;background:#232831;padding:1em;border-radius:9px;}
-    .form-usuario label{display:block;margin-top:0.7em;font-weight:bold;}
-    .form-usuario input, .form-usuario select{width:99%;padding:0.5em;font-size:1em;background:#23242b;color:#fff;border-radius:8px;border:1px solid #39ff14;margin-top:4px;}
-    body.claro .form-usuario input, body.claro .form-usuario select{background:#f8f9fa;color:#232831;border:1px solid #007aff;}
-    .form-usuario button{background:#39ff14;color:#222;font-weight:bold;border:none;padding:0.4em 1.2em;border-radius:8px;margin-top:1em;cursor:pointer;}
-    .form-usuario button:hover{background:#007aff;color:#fff;}
-    .whatsapp-link{margin:0.8em 0;text-align:center;}
-    .whatsapp-link a{background:#25D366;color:#fff;font-weight:bold;padding:0.55em 1.2em;border-radius:7px;text-decoration:none;box-shadow:0 2px 5px #2225;display:inline-block;animation:pulse .65s cubic-bezier(.6,0,.22,1) 2;}
-    .pedido-obrigado{animation:fadeIn .7s .3s both; text-align:center;color:#39ff14;font-weight:bold;margin-top:12px;font-size:1.12em;}
-    .tabs{display:flex;justify-content:center;gap:0.7em;margin:2em 0 1em 0;}
-    .tab-btn{background:#23242b;border:none;border-radius:7px;color:inherit;font-size:1em;padding:0.52em 1.2em;cursor:pointer;transition:background .18s,color .18s;}
-    .tab-btn.active{color:#ff8c00;background:#222;font-weight:bold;}
-    .tab-content{max-width:620px;margin:0 auto;background:#23242b;border-radius:10px;box-shadow:0 2px 12px #0002;min-height:120px;font-size:1.07em;padding:2em 1.6em;margin-bottom:1.9em;display:none;transition:background .3s,color .22s;}
-    .tab-content.active{display:block;animation:fadeIn .38s;}
-    @keyframes fadeIn{from{opacity:0;transform:translateY(10px);}to{opacity:1;transform:none;}}
-    @keyframes pulse { 0%{transform:scale(.95);} 50%{transform:scale(1.06);} 100%{transform:scale(1);} }
-    .tab-content h2{margin-top:0;color:#ff8c00;text-shadow:0 0 10px #ff8c00, 0 0 4px #39ff14;}
-    .produto-item{display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid #2226;padding:1em 0.1em;gap:1em;}
-    .produto-nome{font-weight:bold;color:#39ff14;letter-spacing:0.03em;}
-    .produto-preco{color:#ff8c00;font-weight:bold;margin:0 8px;}
-    .add-btn{background:#39ff14;color:#16191e;border:none;border-radius:6px;padding:0.5em 1.2em;font-size:1em;font-weight:bold;cursor:pointer;margin-left:8px;transition:background .21s;}
-    .add-btn:hover{background:#ff8c00;color:#fff;}
-    .destaque{color:#39ff14;font-weight:bold;text-shadow:0 0 10px #39ff14;}
-    ul{padding-left:1.1em;}
-    @media (max-width:620px){
-      .tab-content{padding:1em 0.3em;}
-      .logo-mascote{height:51px;}
-      .carrinho-icone{top:9px;right:7px;}
-      .sacola{width:97vw;right:auto;left:2vw;}
-      .switch-btn{width:36px;height:20px;}
-      .switch-slider{width:16px;height:16px;}
-      .switch-icone{width:12px;height:12px;}
-    }
-  </style>
+  <!-- Coloque seu CSS externo aqui, removendo o <style> se já estiver usando o style.css externo -->
+  <!-- ...mantenha seu CSS igual antes... -->
 </head>
 <body>
-  <header>
-    <img src="yoshi.png" class="logo-mascote" alt="Yoshi">
-    <div>
-      <span class="logo-dcell">D'cell</span>
-      <span class="logo-eletronicos">ELETRÔNICOS</span>
-    </div>
-    <button class="switch-btn" onclick="alternarTema()" title="Trocar tema">
-      <span class="switch-slider">
-        <svg class="switch-icone moon" viewBox="0 0 20 20" fill="none"><path d="M16.8 13.5A6.5 6.5 0 0 1 6.5 3.2 7 7 0 1 0 16.8 13.5Z" fill="#111"/><circle cx="16" cy="6" r="1" fill="#111"/><circle cx="14.5" cy="4" r="0.5" fill="#111"/></svg>
-        <svg class="switch-icone sun" viewBox="0 0 20 20" fill="none"><circle cx="10" cy="10" r="4" stroke="#FFD600" stroke-width="1.8"/><g stroke="#FFD600" stroke-width="1"><line x1="10" x2="10" y1="1.2" y2="3.2"/><line x1="10" x2="10" y1="16.8" y2="18.8"/><line x1="1.2" x2="3.2" y1="10" y2="10"/><line x1="16.8" x2="18.8" y1="10" y2="10"/><line x1="4.4" y1="4.4" x2="5.8" y2="5.8"/><line x1="14.2" y1="14.2" x2="15.6" y2="15.6"/><line x1="4.4" y1="15.6" x2="5.8" y2="14.2"/><line x1="14.2" y1="5.8" x2="15.6" y2="4.4"/></g></svg>
-      </span>
-    </button>
-  </header>
-  <div class="carrinho-icone" onclick="abrirSacola()">
-    🛒 <strong id="cart-contador">0</strong>
-  </div>
-  <div class="sacola" id="sacola">
-    <h3>Sacola de Compras</h3>
-    <div class="sacola-lista" id="sacola-lista"></div>
-    <div class="sacola-total" id="sacola-total"></div>
-    <button class="comprar-btn" onclick="comprarAgora()">Finalizar Compra</button>
-    <div id="form-usuario-area"></div>
-    <div class="sacola-confirmado" id="sacola-confirmado" style="display:none"></div>
-  </div>
-  <!-- Abas -->
-  <nav class="tabs">
-    <button class="tab-btn active" onclick="mostrarAba('quem')">Quem somos</button>
-    <button class="tab-btn" onclick="mostrarAba('produtos')">Produtos</button>
-    <button class="tab-btn" onclick="mostrarAba('contato')">Contato</button>
-  </nav>
-  <section class="tab-content active" id="tab-quem">
-    <h2>Quem Somos</h2>
-    <p>Somos <span class="destaque">D'cell Eletrônicos</span>, apaixonados por inovação e tecnologia.<br>
-      Atendemos você com os melhores eletrônicos, acessórios e atendimento personalizado desde 2015!</p>
-  </section>
-  <section class="tab-content" id="tab-produtos">
-    <h2>Produtos em Destaque</h2>
-    <div id="produtos-lista"></div>
-  </section>
-  <section class="tab-content" id="tab-contato">
-    <h2>Contato</h2>
-    <p>📱 WhatsApp: <span class="destaque">(12) 98269-1531</span><br>
-      📧 Email: <span class="destaque">contato@empresa.com.br</span><br>
-      📍 Endereço: <span class="destaque">Rua Exemplo, 123 – Centro, Cidade</span>
-    </p>
-  </section>
+  <!-- ...cabeçalho e estrutura igual... -->
+
+  <!-- ...conteúdo da loja... -->
+
   <script>
-    function alternarTema() { document.body.classList.toggle('claro'); }
-    function mostrarAba(qual){
-      document.querySelectorAll('.tab-btn').forEach(btn=>btn.classList.remove('active'));
-      document.querySelectorAll('.tab-content').forEach(c=>c.classList.remove('active'));
-      if(qual==='quem'){document.querySelector('.tab-btn:nth-child(1)').classList.add('active');document.getElementById('tab-quem').classList.add('active');}
-      if(qual==='produtos'){document.querySelector('.tab-btn:nth-child(2)').classList.add('active');document.getElementById('tab-produtos').classList.add('active');}
-      if(qual==='contato'){document.querySelector('.tab-btn:nth-child(3)').classList.add('active');document.getElementById('tab-contato').classList.add('active');}
-    }
-    const produtos = [
-      {nome:"Carregador Turbo", preco: 64.90},
-      {nome:"Fone Bluetooth Premium", preco: 119.00},
-      {nome:"Cabo Lightning", preco: 29.90},
-      {nome:"Capinha à prova d'água", preco: 39.90},
-      {nome:"Película Blindada", preco: 24.99}
-    ];
-    let sacola = {};
-    function renderizarProdutos() {
-      const plista = document.getElementById("produtos-lista");
-      plista.innerHTML = "";
-      produtos.forEach((prod, i)=>{
-        plista.innerHTML += `
-          <div class="produto-item">
-            <span class="produto-nome">${prod.nome}</span>
-            <span class="produto-preco">R$ ${prod.preco.toFixed(2)}</span>
-            <button class="add-btn" onclick="adicionarProduto(${i})">Adicionar à sacola</button>
-          </div>
-        `;
-      });
-    }
-    function adicionarProduto(idx) {
-      const key = produtos[idx].nome;
-      if (!sacola[key]) sacola[key] = {qtd:0, idx:idx};
-      sacola[key].qtd += 1;
-      atualizarSacola();
-    }
-    function removerProduto(nome) {
-      delete sacola[nome];
-      atualizarSacola();
-    }
-    function atualizarSacola() {
-      let lista="",total=0,nprod=0;
-      for(let key in sacola){
-        const p = produtos[sacola[key].idx];
-        lista += `<div>${sacola[key].qtd}x ${p.nome}
-          <span class="produto-preco">R$ ${(p.preco*sacola[key].qtd).toFixed(2)}</span>
-          <button class="remover-btn" onclick="removerProduto('${key}')">x</button></div>`;
-        total += p.preco * sacola[key].qtd;
-        nprod += sacola[key].qtd;
-      }
-      document.getElementById("sacola-lista").innerHTML = lista || "(Sacola vazia)";
-      document.getElementById("sacola-total").textContent = "Total: R$ "+total.toFixed(2);
-      document.getElementById("cart-contador").textContent = nprod;
-      if(nprod === 0 && document.getElementById("form-usuario-area")) {
-        document.getElementById("form-usuario-area").innerHTML = "";
-      }
-    }
-    function abrirSacola() {
-      document.getElementById("sacola").style.display =
-        document.getElementById("sacola").style.display === "block" ? "none":"block";
-      document.getElementById("sacola-confirmado").style.display = "none";
-      document.getElementById("form-usuario-area").innerHTML = "";
-    }
-    function comprarAgora() {
-      if (Object.keys(sacola).length === 0) {
-        document.getElementById("form-usuario-area").innerHTML =
-          "<div style='color:#ff8c00;font-weight:bold;text-align:center;margin-top:10px;'>Adicione produtos à sacola antes de finalizar!</div>";
-        return false;
-      }
-      document.getElementById("form-usuario-area").innerHTML = `
-        <form class="form-usuario" onsubmit="return enviaWhatsapp()">
-          <label>Nome completo:</label>
-          <input name="nome" id="nomeUser" required maxlength="60">
-          <label>Endereço de entrega:</label>
-          <input name="endereco" id="enderecoUser" required maxlength="120">
-          <label>Telefone/WhatsApp:</label>
-          <input name="tel" id="whatsUser" required maxlength="17" placeholder="(xx) xxxxx-xxxx">
-          <label>Forma de pagamento:</label>
-          <select name="pagamento" id="pagamentoUser" required>
-            <option value="" disabled selected>Selecione</option>
-            <option>Pix</option>
-            <option>Dinheiro</option>
-            <option>Cartão</option>
-            <option>Outro</option>
-          </select>
-          <button type="submit">Enviar Pedido via WhatsApp</button>
-        </form>`;
-      return false;
-    }
+    // ... todas as funções de renderização iguais ...
     function enviaWhatsapp() {
       if (!Object.keys(sacola).length) {
         document.getElementById("form-usuario-area").innerHTML =
@@ -220,20 +32,28 @@
       mensagem += `\nTotal: ${document.getElementById("sacola-total").textContent}\n`;
       mensagem += `\n--- DADOS DO CLIENTE ---\n`;
       mensagem += `Nome: ${nome}\nWhatsapp: ${tel}\nEndereço: ${endereco}\nForma de Pagamento: ${pag}`;
-      let link = "https://wa.me/5512982691531?text="+encodeURIComponent(mensagem);
+      let link = "https://wa.me/5512982691531?text=" + encodeURIComponent(mensagem);
 
       document.getElementById("form-usuario-area").innerHTML = `
         <div class="whatsapp-link">
-          <a href="${link}" target="_blank" style="font-size:1.15em;">✅ Pedido pronto para enviar no WhatsApp</a>
+          <button onclick="window.open('${link}','_blank')" 
+            style="font-size:1.15em;background:#25D366;color:#fff;font-weight:bold;padding:0.55em 1.2em;border-radius:7px;border:none;cursor:pointer;">
+            ✅ Pedido pronto para enviar no WhatsApp
+          </button>
         </div>
         <div class="pedido-obrigado">
-          🎉 Obrigado pelo seu pedido! Aguarde nosso contato para confirmação.<br>Se clicar no botão acima, seu WhatsApp será aberto com os detalhes do pedido.
+          🎉 Obrigado pelo seu pedido! Aguarde nosso contato para confirmação.<br>Após clicar no botão acima, seu WhatsApp será aberto para revisar e enviar.
         </div>
       `;
-      sacola = {}; atualizarSacola();
+
+      // Limpa o carrinho só depois de um tempo (6 segundos)
+      setTimeout(() => { sacola = {}; atualizarSacola(); }, 6000);
+
       return false;
     }
+    // ... resto igual ...
     renderizarProdutos(); atualizarSacola();
   </script>
 </body>
 </html>
+
