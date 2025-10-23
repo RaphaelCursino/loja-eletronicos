@@ -1,13 +1,12 @@
 function enviarPedidoWhatsapp() {
-  let nome = document.getElementById('nomeUser').value;
-  let endereco = document.getElementById('enderecoUser').value;
-  let tel = document.getElementById('whatsUser').value;
-  let pagamento = document.getElementById('pagamentoUser').value;
+  let nome = document.getElementById('nomeUser').value.trim();
+  let endereco = document.getElementById('enderecoUser').value.trim();
+  let tel = document.getElementById('whatsUser').value.trim();
+  let pagamento = document.getElementById('pagamentoUser').value.trim();
 
-  // Aqui vai o carrinho de compras (sacola) se usar, senão comente esta parte!
   let mensagem = `🔔 NOVO PEDIDO NO SITE!\n\n`;
 
-  // Produto do carrinho
+  // Carrinho de compras (sacola)
   if (typeof sacola !== "undefined" && Object.keys(sacola).length > 0) {
     for(let key in sacola){
       const p = produtos[sacola[key].idx];
@@ -21,5 +20,18 @@ function enviarPedidoWhatsapp() {
 
   let numero = "5512982691531";
   let link = "https://wa.me/" + numero + "?text=" + encodeURIComponent(mensagem);
+
+  // Abre o WhatsApp corretamente no navegador/celular
   window.open(link, "_blank");
+
+  // Limpa a sacola/carrinho somente depois de 6 segundos
+  setTimeout(() => {
+    if (typeof sacola !== "undefined") {
+      sacola = {};
+      if (typeof atualizarSacola === "function") atualizarSacola();
+    }
+  }, 6000);
+
+  return false; // garante que um submit do form não faça reload
 }
+
