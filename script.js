@@ -6,7 +6,6 @@ function enviarPedidoWhatsapp() {
 
   let mensagem = `🔔 NOVO PEDIDO NO SITE!\n\n`;
 
-  // Carrinho de compras (sacola)
   if (typeof sacola !== "undefined" && Object.keys(sacola).length > 0) {
     for(let key in sacola){
       const p = produtos[sacola[key].idx];
@@ -21,17 +20,15 @@ function enviarPedidoWhatsapp() {
   let numero = "5512982691531";
   let link = "https://wa.me/" + numero + "?text=" + encodeURIComponent(mensagem);
 
-  // Abre o WhatsApp corretamente no navegador/celular
   window.open(link, "_blank");
 
-  // Limpa a sacola/carrinho somente depois de 6 segundos
   setTimeout(() => {
     if (typeof sacola !== "undefined") {
       sacola = {};
-      if (typeof atualizarSacola === "function") atualizarSacola();
+      atualizarSacola();
     }
   }, 6000);
 
-  return false; // garante que um submit do form não faça reload
+  return false;
 }
 
